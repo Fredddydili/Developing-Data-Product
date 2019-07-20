@@ -1,0 +1,12 @@
+name: MyShinyApp
+title: MyShinyApp
+username:
+account: freddyli
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1043085
+bundleId: 2250763
+url: https://freddyli.shinyapps.io/MyShinyApp/
+when: 1563664153.00952
+asMultiple: FALSE
+asStatic: FALSE
