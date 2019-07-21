@@ -1,0 +1,64 @@
+---
+title       : Developing Data Products Shiny App Pitch
+subtitle    : 
+author      : Freddy Li
+job         : 
+framework   : io2012       # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Instruction
+
+This presentation presents the project of Developing Data Products course to design a simple Shiny App. The Shiny App could be accessed through [Shiny App](https://freddyli.shinyapps.io/MyShinyApp/). The source codes have been uploaded to Github and can be accessed through the link [Source Code](https://github.com/Fredddydili/Developing-Data-Product/tree/master/ShinyApp).
+
+The pitch will consists of the design of the App, plotting of variables and the embedded interactive app to use in the end.
+
+---
+
+## Design and Instruction of App
+
+- The app named "Plotting Data Analysis" can realize the functions to display the distribution of variables, scatters and the results of regression model through different plots controlled by checkboxes on the side bar. Also, the app can display the prediction result under the plot. The input of explanation variable could be controled by the slider on the side bar. 
+- The analysis is based on the dataset of mtcars. The prediction model is to use horsepower to predict the miles per gallon.
+
+---
+
+## Variables Distribution
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+```{r, cache=TRUE, echo=FALSE}
+library(shiny)
+library(plotly)
+library(broom)
+library(dplyr)
+library(webshot)
+data("mtcars")
+```
+
+```{r, cache=TRUE,echo=FALSE}
+mpgdf <- mtcars[,c("mpg","hp")]
+model <-lm(mpg~hp,data=mpgdf)
+  
+modelpred <- predict(model, newdata=data.frame(hp=150))
+```
+
+```{r,echo=F,fig.align='center',fig.width=12}
+par(mfrow=c(1,2))
+hist(mpgdf$hp,col="blue",main="Distribution of Gross Horsepower",xlab ="Gross Horsepower",xlim = c(50,350))
+hist(mpgdf$mpg, col="tomato",main="Distribution of Miles per Gallon",xlab="Miles per Gallon",xlim=c(0,50))
+```
+
+---
+
+## Shiny App
+
+
+<iframe src ="https://freddyli.shinyapps.io/MyShinyApp/"
+  style="border: none; width: 100%; height: 500px;"/>
+</iframe>
